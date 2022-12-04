@@ -29,15 +29,15 @@ def get_points_from_round(elf: str, me: str) -> int:
     return points
 
 
-def test_elf_strategy(rounds: list) -> None:
+def try_elf_strategy(rounds: list) -> int:
     total_points = 0
     for current_round in rounds:
         elf, me = decode_round(current_round.split())
         total_points += get_points_from_round(elf, me)
-    print(f"test_strategy_score: {total_points}")
+    return total_points
 
 
-def confirmed_elf_strategy(rounds: list) -> None:
+def confirmed_elf_strategy(rounds: list) -> int:
     total_points = 0
     for current_round in rounds:
         raw_elf, raw_me = current_round.split()
@@ -51,10 +51,19 @@ def confirmed_elf_strategy(rounds: list) -> None:
         else:
             me = losing_hands[elf]
         total_points += get_points_from_round(elf, me)
-    print(f"confirmed_strategy_score: {total_points}")
+    return total_points
 
 
-with open("../input/day_2.txt") as input_file:
-    rounds = input_file.read().splitlines()
-    test_elf_strategy(rounds)
-    confirmed_elf_strategy(rounds)
+def main():
+    with open("../input/day_2.txt") as input_file:
+        rounds = input_file.read().splitlines()
+
+        try_strategy_points = try_elf_strategy(rounds)
+        print(f"try_strategy_score: {try_strategy_points}")
+
+        confirm_strategy_points = confirmed_elf_strategy(rounds)
+        print(f"confirmed_strategy_score: {confirm_strategy_points}")
+
+
+if __name__ == "__main__":
+    main()
