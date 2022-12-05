@@ -52,11 +52,13 @@ def rearrange_and_get_top_stacks(crane_procedure):
     execute_crane_procedure(stacks, moves)
     return "".join(get_top_of_stacks(stacks))
 
+
 def main():
     with open("../input/day_5.txt") as input_file:
         crane_procedure = input_file.read().splitlines()
         top_after_rearrange = rearrange_and_get_top_stacks(crane_procedure)
         print(f"{top_after_rearrange=}")
+
 
 if __name__ == "__main__":
     main()
