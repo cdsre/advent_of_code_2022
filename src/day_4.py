@@ -16,12 +16,24 @@ def count_fully_overlapped_sections(section_assignments_list: list) -> int:
     return overlap_count
 
 
+def count_any_overlapped_sections(section_assignments_list: list) -> int:
+    overlap_count = 0
+    for sections in section_assignments_list:
+        section1, section2 = [get_sections(section_range) for section_range in sections.split(",")]
+        if section1 & section2:
+            overlap_count += 1
+    return overlap_count
+
+
 def main():
     with open("../input/day_4.txt") as input_file:
         section_assignments_list = input_file.read().splitlines()
 
-        count_full_subset_section = count_fully_overlapped_sections(section_assignments_list)
-        print(f"Full section overlaps: {count_full_subset_section}")
+        count_full_overlap_section = count_fully_overlapped_sections(section_assignments_list)
+        print(f"Full section overlaps: {count_full_overlap_section}")
+
+        count_any_overlap_section = count_any_overlapped_sections(section_assignments_list)
+        print(f"Any section overlaps: {count_any_overlap_section}")
 
 
 if __name__ == "__main__":

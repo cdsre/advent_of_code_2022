@@ -1,5 +1,6 @@
 from pytest import fixture, mark
-from src.day_4 import get_sections, is_fully_overlapped_sections, count_fully_overlapped_sections
+from src.day_4 import get_sections, is_fully_overlapped_sections, count_fully_overlapped_sections, \
+    count_any_overlapped_sections
 
 
 @fixture()
@@ -27,3 +28,7 @@ def test_is_fully_overlapped_sections(section1, section2, result):
 
 def test_count_fully_overlapped_sections(section_assignments_list):
     assert count_fully_overlapped_sections(section_assignments_list) == 2
+
+
+def test_count_any_overlapped_sections(section_assignments_list):
+    assert count_any_overlapped_sections(section_assignments_list) == 4
