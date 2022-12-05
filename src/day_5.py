@@ -2,13 +2,11 @@ import re
 
 CRANE_MODEL = 9000
 
+
 def get_initial_stacks(crane_procedure: list) -> dict[list]:
     # capture the stacks only
-    stacks = []
-    for line in crane_procedure:
-        if line == "":
-            break
-        stacks.append(line)
+    split_point = crane_procedure.index("")
+    stacks = crane_procedure[:split_point]
 
     # transpose the stacks and pick only those that start with a number
     trans_stack = list(zip(*stacks[::-1]))
@@ -68,6 +66,7 @@ def main():
 
         top_after_rearrange_9001 = rearrange_and_get_top_stacks(crane_procedure, model=9001)
         print(f"{top_after_rearrange_9001=}")
+
 
 if __name__ == "__main__":
     main()
