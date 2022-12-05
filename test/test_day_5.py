@@ -1,4 +1,4 @@
-from pytest import fixture
+from pytest import fixture, mark
 from src.day_5 import get_initial_stacks, parse_move_instruction, get_move_instructions, process_move_instruction, \
     execute_crane_procedure, get_top_of_stacks, rearrange_and_get_top_stacks
 
@@ -38,9 +38,13 @@ def test_get_move_instructions(crane_procedure, move_instructions):
     assert get_move_instructions(crane_procedure) == move_instructions
 
 
-def test_process_move_instruction(stack_map):
-    process_move_instruction(stack_map, "1", "2", "3")
-    assert stack_map == {'1': ['Z', 'N'], '2': ['M', 'C'], '3': ['P', 'D']}
+@mark.parametrize("model,result", [
+    (9000, {'1': ['Z', 'N'], '2': ['M'], '3': ['P', 'D', 'C']}),
+    (9001, {'1': ['Z', 'N'], '2': ['M'], '3': ['P', 'C', 'D']})
+])
+def test_process_move_instruction(stack_map, model, result):
+    process_move_instruction(stack_map, "2", "2", "3", model=model)
+    assert stack_map == result
 
 
 def test_execute_crane_procedure(stack_map, move_instructions):
