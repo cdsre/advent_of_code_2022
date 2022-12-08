@@ -2,7 +2,7 @@ from src.day_6 import detect_start_marker
 from pytest import mark
 
 
-@mark.parametrize("signal,start_marker, message_marker", (
+@mark.parametrize("signal, start_marker, message_marker", (
         ("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 7, 19),
         ("bvwbjplbgvbhsrlpgdmjqwftvncz", 5, 23),
         ("nppdvjthqldpwncqszvftbrmjlhg", 6, 23),
