@@ -42,7 +42,8 @@ def test_count_tail_squares(head_data):
 def test_last_knot_squares(head_data):
     assert count_last_knot_squares(head_data) == 1
 
-def test_last_knot_squares_motion():
+
+def test_last_knot_squares_additional_motion():
     assert count_last_knot_squares("""R 5
 U 8
 L 8
@@ -50,4 +51,4 @@ D 3
 R 17
 D 10
 L 25
-U 20""".splitlines()) == 1
+U 20""".splitlines()) == 36
